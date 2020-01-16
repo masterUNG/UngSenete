@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ungsenete/screens/test_calendar.dart';
+import 'package:ungsenete/screens/test_parsing.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: ThemeData(primarySwatch: Colors.purple),
-      home: TestCalendar(),
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.purple),
+      home: TestParsing(),
     );
   }
 }
