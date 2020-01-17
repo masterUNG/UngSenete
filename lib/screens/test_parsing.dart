@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ungsenete/models/address_model.dart';
+import 'package:ungsenete/models/shape_model.dart';
 import 'package:ungsenete/models/student_model.dart';
-
 
 class TestParsing extends StatefulWidget {
   @override
@@ -17,7 +18,38 @@ class _TestParsingState extends State<TestParsing> {
   @override
   void initState() {
     super.initState();
-    loadStudent();
+    // loadStudent();
+    // loadAddress();
+    loadShape();
+  }
+
+  Future<void> loadShape() async {
+    String string = await loadShapeAssets();
+    print('string ==>> $string');
+    var jsonResponse = json.decode(string);
+    ShapeModel shapeModel = ShapeModel.fromJson(jsonResponse);
+    print('Name ==>> ${shapeModel.shapeName}');
+  }
+
+  Future<String> loadShapeAssets() async {
+    return await rootBundle.loadString('assets/shape.json');
+  }
+
+  Future<void> loadAddress() async {
+    String string = await loadAddressAsset();
+    print('string = $string');
+    var jsonResponse = json.decode(string);
+    AddressModel addressModel = AddressModel.fromJson(jsonResponse);
+    print('city ==> ${addressModel.city}');
+    print('streets ==> ${addressModel.streets}');
+    List<String> streetsList = addressModel.streets;
+    for (var street in streetsList) {
+      print('street ==> $street');
+    }
+  }
+
+  Future<String> loadAddressAsset() async {
+    return await rootBundle.loadString('assets/address.json');
   }
 
   Future<String> _loadAStudentAsset() async {

@@ -1,22 +1,19 @@
-class Address {
-  final String city;
-  final List<String> streets;
+class AddressModel {
+  String city;
+  List<String> streets;
 
-  Address({
-    this.city,
-    this.streets
-  });
+  AddressModel({this.city, this.streets});
 
-  factory Address.fromJson(Map<String, dynamic> parsedJson) {
-    var streetsFromJson  = parsedJson['streets'];
-    //print(streetsFromJson.runtimeType);
-    // List<String> streetsList = new List<String>.from(streetsFromJson);
-    List<String> streetsList = streetsFromJson.cast<String>();
-
-    return new Address(
-      city: parsedJson['city'],
-      streets: streetsList,
-    );
+  AddressModel.fromJson(Map<String, dynamic> json) {
+    city = json['city'];
+    streets = json['streets'].cast<String>();
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['city'] = this.city;
+    data['streets'] = this.streets;
+    return data;
+  }
 }
+
