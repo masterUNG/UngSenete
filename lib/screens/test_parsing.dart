@@ -28,7 +28,11 @@ class _TestParsingState extends State<TestParsing> {
     print('string ==>> $string');
     var jsonResponse = json.decode(string);
     ShapeModel shapeModel = ShapeModel.fromJson(jsonResponse);
-    print('Name ==>> ${shapeModel.shapeName}');
+    String shapeName = shapeModel.shapeName;
+    print('shapeName = $shapeName');
+    var propertyObject = shapeModel.property;
+    print('width ==> ${propertyObject.width}');
+    print('bredth ==> ${propertyObject.breadth}');
   }
 
   Future<String> loadShapeAssets() async {
