@@ -19,8 +19,8 @@ class _TestParsingState extends State<TestParsing> {
   void initState() {
     super.initState();
     // loadStudent();
-    // loadAddress();
-    loadShape();
+    loadAddress();
+    // loadShape();
   }
 
   Future<void> loadShape() async {
