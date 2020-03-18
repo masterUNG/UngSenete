@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' show Response, get;
 import 'package:ungsenete/models/data_model.dart';
 import 'package:ungsenete/screens/detail.dart';
 
@@ -34,8 +35,8 @@ class _MyServiceState extends State<MyService> {
       });
     }
 
-    Response response = await Dio().get(url2);
-    var result = json.decode(response.data);
+    Response response = await get(url2);
+    var result = json.decode(response.body);
     print('result ===>>> $result');
 
     for (var map in result) {
