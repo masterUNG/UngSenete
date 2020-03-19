@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' show Response, get;
+import 'package:http/http.dart' as http;
+
 import 'package:ungsenete/models/data_model.dart';
 import 'package:ungsenete/screens/detail.dart';
 
@@ -26,6 +26,8 @@ class _MyServiceState extends State<MyService> {
     readAllData();
   }
 
+  
+
   Future<void> readAllData() async {
     String url2 = '$url$search';
 
@@ -35,16 +37,18 @@ class _MyServiceState extends State<MyService> {
       });
     }
 
-    Response response = await get(url2);
-    var result = json.decode(response.body);
-    print('result ===>>> $result');
+    http.Response response = await http.get(url2);
+    // var response = await fetchResponse();
 
-    for (var map in result) {
-      DataModel dataModel = DataModel.fromJson(map);
-      setState(() {
-        dataModels.add(dataModel);
-      });
-    }
+    var result = json.decode(response.body);
+      print('result ===>>> $result');
+
+      for (var map in result) {
+        DataModel dataModel = DataModel.fromJson(map);
+        setState(() {
+          dataModels.add(dataModel);
+        });
+      }
   }
 
   Widget showNumberTH(int index) {
